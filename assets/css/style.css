@@ -1,0 +1,463 @@
+/* ==========================================================================
+   Ragged Tooth Software — shared styles
+   Theme colours live in custom properties; .theme-flagulous swaps the
+   charcoal background for a dark blurple.
+   ========================================================================== */
+
+:root {
+  --bg: #121212;            /* charcoal */
+  --bg-raised: #1b1b1b;
+  --line: #2c2c2c;
+  --text: #f4f1ea;
+  --muted: #9a968e;
+  --accent: #ff6b00;        /* bright orange */
+  --accent-ink: #121212;    /* text on accent */
+
+  --font-sans: "Fira Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Fira Code", "Fira Mono", ui-monospace, Menlo, monospace;
+
+  --wrap: 1200px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+}
+
+/* Colours sampled from the Flagulous app icon background
+   (navy #000042 at the top to indigo #090057 at the bottom). */
+.theme-flagulous {
+  --bg: #050349;            /* dark blurple */
+  --bg-raised: #0d0a5c;
+  --line: #231f73;
+  --muted: #a9a6d6;
+  --accent-ink: #050349;
+}
+
+body.theme-flagulous {
+  background: linear-gradient(180deg, #000042 0%, #090057 100%) fixed;
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--accent);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4rem;
+}
+
+.brand {
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav a {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav a:hover { color: var(--text); }
+
+.nav .nav-cta {
+  color: var(--text);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding-block: clamp(4rem, 12vw, 9rem) clamp(3rem, 8vw, 6rem);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  background: var(--accent);
+}
+
+.display {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  margin: 0 0 2rem;
+  max-width: 12ch;
+}
+
+.lede {
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  color: var(--muted);
+  max-width: 36rem;
+  margin: 0 0 2.5rem;
+}
+
+.lede strong { color: var(--text); font-weight: 500; }
+
+.app-icon {
+  width: clamp(112px, 14vw, 160px);
+  height: auto;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 18px 30px rgb(0 0 0 / 0.55));  /* follows the icon's own rounded shape */
+}
+
+.tagline {
+  font-size: clamp(1.375rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--muted);
+  max-width: 28ch;
+  margin: 0;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  border: 2px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+  transition: transform 0.15s, background 0.15s, color 0.15s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line);
+}
+
+.btn-ghost:hover { border-color: var(--text); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+/* ---------- Accent strip + meta row ---------- */
+
+.strip {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.strip .wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.7rem;
+  font-weight: 500;
+}
+
+.strip .live::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.6rem;
+  background: var(--accent-ink);
+}
+
+.meta-row {
+  border-bottom: 1px solid var(--line);
+}
+
+.meta-row .wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-block: 1.1rem;
+  color: var(--muted);
+}
+
+.meta-row span:nth-child(2) { text-align: center; }
+.meta-row span:nth-child(3) { text-align: right; }
+.meta-row b { color: var(--text); font-weight: 500; }
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding-block: clamp(4rem, 10vw, 8rem);
+}
+
+.section-title {
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0 0 2.5rem;
+}
+
+/* ---------- Cards ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  gap: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+a.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.card-art {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, transparent), transparent 60%),
+    var(--bg);
+  font-size: clamp(3rem, 8vw, 5rem);
+}
+
+.card-art.blurple {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+    linear-gradient(180deg, #000042, #090057);
+}
+
+.card-icon {
+  width: clamp(88px, 10vw, 120px);
+  height: auto;
+  filter: drop-shadow(0 14px 24px rgb(0 0 0 / 0.55));
+}
+
+.card-body { padding: 1.75rem; flex: 1; }
+
+.card h3 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+}
+
+.card p { color: var(--muted); margin: 0 0 1rem; }
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  padding: 1rem 1.75rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.card-tags span:first-child { color: var(--text); }
+
+.card-link {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---------- Feature grid ---------- */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.feature {
+  padding: 2rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.feature .num { color: var(--accent); display: block; margin-bottom: 2.5rem; }
+
+.feature h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.5rem;
+}
+
+.feature p { color: var(--muted); margin: 0; }
+
+/* ---------- Quote ---------- */
+
+.quote {
+  border-left: 4px solid var(--accent);
+  padding-left: clamp(1.25rem, 3vw, 2.5rem);
+  max-width: 52rem;
+}
+
+.quote p {
+  font-size: clamp(1.75rem, 3.6vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.25rem;
+}
+
+.quote cite { font-style: normal; color: var(--muted); }
+
+/* ---------- Accent CTA block ---------- */
+
+.cta {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.cta .eyebrow { color: var(--accent-ink); }
+.cta .eyebrow::before { background: var(--accent-ink); }
+
+.cta .display {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  max-width: 16ch;
+  margin-bottom: 1.5rem;
+}
+
+.cta p { max-width: 34rem; margin: 0 0 2.5rem; }
+
+.cta-link {
+  display: inline-block;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 3px solid currentColor;
+  padding-bottom: 0.4rem;
+}
+
+.cta-link:hover { opacity: 0.75; }
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-block: 2.5rem;
+  color: var(--muted);
+}
+
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+}
+
+.site-footer .brand { color: var(--text); }
+.site-footer a:not(.brand) { text-decoration: underline; text-underline-offset: 3px; }
+.site-footer a:hover { color: var(--accent); }
+.site-footer .copy { margin-left: auto; }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 720px) {
+  .nav a:not(.nav-cta) { display: none; }
+  .strip .wrap { flex-direction: column; gap: 0.25rem; }
+  .meta-row .wrap { grid-template-columns: 1fr; gap: 0.4rem; }
+  .meta-row span:nth-child(n) { text-align: left; }
+  .site-footer .copy { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* ---------- Flagulous header flag ----------
+   Same diagonal band as the app icon's flag (top-left to bottom-right,
+   light orange at the top to the accent orange at the bottom). */
+
+.theme-flagulous .site-header .wrap { align-items: stretch; }
+
+.theme-flagulous .site-header .brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-inline: 2.25rem;
+  color: var(--accent-ink);
+  font-weight: 300;
+}
+
+.theme-flagulous .site-header .brand::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, #ffa040 0%, #ff6a00 40%);
+  clip-path: polygon(0 0, calc(100% - 2.5rem) 0, 100% 100%, 2.5rem 100%);
+}
