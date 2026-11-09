@@ -167,7 +167,7 @@ a { color: inherit; }
 
 .tagline {
   font-size: clamp(1.375rem, 3vw, 2.25rem);
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.2;
   letter-spacing: -0.015em;
   color: var(--muted);
