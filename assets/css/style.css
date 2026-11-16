@@ -275,7 +275,8 @@ a { color: inherit; }
   transition: border-color 0.2s, transform 0.2s;
 }
 
-a.card:hover {
+a.card:hover,
+.card-stretch:hover {
   border-color: var(--accent);
   transform: translateY(-4px);
 }
@@ -329,6 +330,28 @@ a.card:hover {
   color: var(--accent);
   font-weight: 600;
 }
+
+/* Card with more than one link: "Learn more" covers the whole card, badge sits above it */
+.card-stretch { position: relative; }
+.card-stretch .card-link { text-decoration: none; }
+.card-stretch .card-link::after { content: ""; position: absolute; inset: 0; }
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.store-badge {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  line-height: 0;
+}
+
+.store-badge img { height: 40px; width: auto; }
 
 /* ---------- Feature grid ---------- */
 
